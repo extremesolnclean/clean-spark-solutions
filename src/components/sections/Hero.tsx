@@ -1,10 +1,12 @@
+
 import React, { useState } from 'react';
-import { useToast } from "@/components/ui/use-toast";
+import { useToast } from "@/hooks/use-toast";
 import SearchForm from '../hero/SearchForm';
 import BedroomsDialog from '../hero/BedroomsDialog';
 import BathroomsDialog from '../hero/BathroomsDialog';
 import CleaningTypeDialog from '../hero/CleaningTypeDialog';
 import AdditionalOptionsDialog from '../hero/AdditionalOptionsDialog';
+import DescriptionDialog from '../hero/DescriptionDialog';
 import TrustIndicators from '../hero/TrustIndicators';
 
 const Hero = () => {
@@ -14,10 +16,12 @@ const Hero = () => {
   const [showBathroomsDialog, setShowBathroomsDialog] = useState(false);
   const [showCleaningTypeDialog, setShowCleaningTypeDialog] = useState(false);
   const [showAdditionalOptionsDialog, setShowAdditionalOptionsDialog] = useState(false);
+  const [showDescriptionDialog, setShowDescriptionDialog] = useState(false);
   const [selectedBedrooms, setSelectedBedrooms] = useState<number | null>(null);
   const [selectedBathrooms, setSelectedBathrooms] = useState<number | null>(null);
   const [selectedCleaningType, setSelectedCleaningType] = useState<string | null>(null);
   const [selectedAdditionalOptions, setSelectedAdditionalOptions] = useState<string[]>([]);
+  const [description, setDescription] = useState('');
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [selectedPhrase, setSelectedPhrase] = useState<string | null>(null);
   const { toast } = useToast();
@@ -123,14 +127,24 @@ const Hero = () => {
   };
 
   const handleNextAfterAdditionalOptions = () => {
+    // Close the additional options dialog and open description dialog
+    setShowAdditionalOptionsDialog(false);
+    setShowDescriptionDialog(true);
+  };
+
+  const handleDescriptionChange = (value: string) => {
+    setDescription(value);
+  };
+
+  const handleFinishBooking = () => {
     // Process the completed form data with all selections
     toast({
       title: "Information Submitted",
-      description: `You selected ${selectedBedrooms} bedroom(s), ${selectedBathrooms} bathroom(s), ${selectedCleaningType} cleaning, and ${selectedAdditionalOptions.length} additional options`,
+      description: `You selected ${selectedBedrooms} bedroom(s), ${selectedBathrooms} bathroom(s), ${selectedCleaningType} cleaning, ${selectedAdditionalOptions.length} additional options, and ${description ? 'added a description' : 'skipped the description'}`,
     });
     
-    // Close the additional options dialog
-    setShowAdditionalOptionsDialog(false);
+    // Close the description dialog
+    setShowDescriptionDialog(false);
   };
 
   return (
@@ -210,6 +224,19 @@ const Hero = () => {
           setShowCleaningTypeDialog(true);
         }}
         onNext={handleNextAfterAdditionalOptions}
+      />
+
+      {/* Description Dialog */}
+      <DescriptionDialog
+        open={showDescriptionDialog}
+        onOpenChange={setShowDescriptionDialog}
+        description={description}
+        onDescriptionChange={handleDescriptionChange}
+        onBack={() => {
+          setShowDescriptionDialog(false);
+          setShowAdditionalOptionsDialog(true);
+        }}
+        onSkip={handleFinishBooking}
       />
     </div>
   );
