@@ -1,10 +1,10 @@
-
 import React, { useState } from 'react';
 import { useToast } from "@/components/ui/use-toast";
 import SearchForm from '../hero/SearchForm';
 import BedroomsDialog from '../hero/BedroomsDialog';
 import BathroomsDialog from '../hero/BathroomsDialog';
 import CleaningTypeDialog from '../hero/CleaningTypeDialog';
+import AdditionalOptionsDialog from '../hero/AdditionalOptionsDialog';
 import TrustIndicators from '../hero/TrustIndicators';
 
 const Hero = () => {
@@ -13,9 +13,11 @@ const Hero = () => {
   const [showDialog, setShowDialog] = useState(false);
   const [showBathroomsDialog, setShowBathroomsDialog] = useState(false);
   const [showCleaningTypeDialog, setShowCleaningTypeDialog] = useState(false);
+  const [showAdditionalOptionsDialog, setShowAdditionalOptionsDialog] = useState(false);
   const [selectedBedrooms, setSelectedBedrooms] = useState<number | null>(null);
   const [selectedBathrooms, setSelectedBathrooms] = useState<number | null>(null);
   const [selectedCleaningType, setSelectedCleaningType] = useState<string | null>(null);
+  const [selectedAdditionalOptions, setSelectedAdditionalOptions] = useState<string[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [selectedPhrase, setSelectedPhrase] = useState<string | null>(null);
   const { toast } = useToast();
@@ -65,6 +67,16 @@ const Hero = () => {
     setSelectedCleaningType(option);
   };
 
+  const handleAdditionalOptionToggle = (option: string) => {
+    setSelectedAdditionalOptions(prev => {
+      if (prev.includes(option)) {
+        return prev.filter(item => item !== option);
+      } else {
+        return [...prev, option];
+      }
+    });
+  };
+
   const handleNextAfterBedrooms = () => {
     if (!selectedBedrooms) {
       toast({
@@ -105,14 +117,20 @@ const Hero = () => {
       return;
     }
 
-    // Process the completed form data
+    // Close cleaning type dialog and open additional options dialog
+    setShowCleaningTypeDialog(false);
+    setShowAdditionalOptionsDialog(true);
+  };
+
+  const handleNextAfterAdditionalOptions = () => {
+    // Process the completed form data with all selections
     toast({
       title: "Information Submitted",
-      description: `You selected ${selectedBedrooms} bedroom(s), ${selectedBathrooms} bathroom(s), and ${selectedCleaningType} cleaning`,
+      description: `You selected ${selectedBedrooms} bedroom(s), ${selectedBathrooms} bathroom(s), ${selectedCleaningType} cleaning, and ${selectedAdditionalOptions.length} additional options`,
     });
     
-    // Close the cleaning type dialog
-    setShowCleaningTypeDialog(false);
+    // Close the additional options dialog
+    setShowAdditionalOptionsDialog(false);
   };
 
   return (
@@ -179,6 +197,19 @@ const Hero = () => {
           setShowBathroomsDialog(true);
         }}
         onNext={handleNextAfterCleaningType}
+      />
+
+      {/* Additional Options Dialog */}
+      <AdditionalOptionsDialog
+        open={showAdditionalOptionsDialog}
+        onOpenChange={setShowAdditionalOptionsDialog}
+        selectedOptions={selectedAdditionalOptions}
+        onOptionToggle={handleAdditionalOptionToggle}
+        onBack={() => {
+          setShowAdditionalOptionsDialog(false);
+          setShowCleaningTypeDialog(true);
+        }}
+        onNext={handleNextAfterAdditionalOptions}
       />
     </div>
   );
