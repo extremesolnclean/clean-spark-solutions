@@ -36,7 +36,16 @@ const Hero = () => {
       return;
     }
     
-    setShowDialog(true);
+    // Only show the dialog for house cleaning service
+    if (selectedPhrase === "I'm looking for a house cleaner") {
+      setShowDialog(true);
+    } else {
+      // For other services, just show a toast for now
+      toast({
+        title: "Service Coming Soon",
+        description: "This service option will be available soon!",
+      });
+    }
   };
 
   const handlePhraseSelect = (phrase: string) => {
