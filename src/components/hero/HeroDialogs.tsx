@@ -5,6 +5,7 @@ import BathroomsDialog from './BathroomsDialog';
 import CleaningTypeDialog from './CleaningTypeDialog';
 import AdditionalOptionsDialog from './AdditionalOptionsDialog';
 import DescriptionDialog from './DescriptionDialog';
+import ContactInfoDialog from './ContactInfoDialog';
 import { HeroState, HeroActions } from './HeroState';
 
 interface HeroDialogsProps {
@@ -15,11 +16,13 @@ interface HeroDialogsProps {
     handleNextAfterBathrooms: () => void;
     handleNextAfterCleaningType: () => void;
     handleNextAfterAdditionalOptions: () => void;
+    handleNextAfterDescription: () => void;
     handleFinishBooking: () => void;
     handleBackToBedroomsDialog: () => void;
     handleBackToCleaningTypeDialog: () => void;
     handleBackToBathroomsDialog: () => void;
     handleBackToAdditionalOptionsDialog: () => void;
+    handleBackToDescriptionDialog: () => void;
   };
 }
 
@@ -72,7 +75,21 @@ const HeroDialogs: React.FC<HeroDialogsProps> = ({ state, actions, handlers }) =
         description={state.description}
         onDescriptionChange={actions.handleDescriptionChange}
         onBack={handlers.handleBackToAdditionalOptionsDialog}
-        onSkip={handlers.handleFinishBooking}
+        onNext={handlers.handleNextAfterDescription}
+      />
+
+      {/* Contact Info Dialog */}
+      <ContactInfoDialog
+        open={state.showContactInfoDialog}
+        onOpenChange={actions.setShowContactInfoDialog}
+        fullName={state.fullName}
+        email={state.email}
+        phoneNumber={state.phoneNumber}
+        onFullNameChange={actions.handleFullNameChange}
+        onEmailChange={actions.handleEmailChange}
+        onPhoneNumberChange={actions.handlePhoneNumberChange}
+        onBack={handlers.handleBackToDescriptionDialog}
+        onSubmit={handlers.handleFinishBooking}
       />
     </>
   );

@@ -84,15 +84,50 @@ export function useHeroHandlers({ state, actions, toast }: HeroHandlersProps) {
     actions.setShowDescriptionDialog(true);
   };
 
+  const handleNextAfterDescription = () => {
+    // Close the description dialog and open contact info dialog
+    actions.setShowDescriptionDialog(false);
+    actions.setShowContactInfoDialog(true);
+  };
+
   const handleFinishBooking = () => {
+    // Validate email format
+    if (state.fullName.trim() === '') {
+      toast({
+        title: "Please enter your full name",
+        description: "We need your name to process your booking",
+        variant: "destructive",
+      });
+      return;
+    }
+    
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(state.email)) {
+      toast({
+        title: "Invalid email",
+        description: "Please enter a valid email address",
+        variant: "destructive",
+      });
+      return;
+    }
+    
+    if (state.phoneNumber.trim() === '') {
+      toast({
+        title: "Please enter your phone number",
+        description: "We need your phone number to process your booking",
+        variant: "destructive",
+      });
+      return;
+    }
+    
     // Process the completed form data with all selections
     toast({
-      title: "Information Submitted",
-      description: `You selected ${state.selectedBedrooms} bedroom(s), ${state.selectedBathrooms} bathroom(s), ${state.selectedCleaningType} cleaning, ${state.selectedAdditionalOptions.length} additional options, and ${state.description ? 'added a description' : 'skipped the description'}`,
+      title: "Booking Submitted",
+      description: `Thank you, ${state.fullName}! We've received your request for ${state.selectedBedrooms} bedroom(s), ${state.selectedBathrooms} bathroom(s) with ${state.selectedCleaningType} cleaning. We'll be in touch soon!`,
     });
     
-    // Close the description dialog
-    actions.setShowDescriptionDialog(false);
+    // Close the contact info dialog
+    actions.setShowContactInfoDialog(false);
   };
 
   const handleBackToBedroomsDialog = () => {
@@ -115,16 +150,23 @@ export function useHeroHandlers({ state, actions, toast }: HeroHandlersProps) {
     actions.setShowAdditionalOptionsDialog(true);
   };
 
+  const handleBackToDescriptionDialog = () => {
+    actions.setShowContactInfoDialog(false);
+    actions.setShowDescriptionDialog(true);
+  };
+
   return {
     handleSearch,
     handleNextAfterBedrooms,
     handleNextAfterBathrooms,
     handleNextAfterCleaningType,
     handleNextAfterAdditionalOptions,
+    handleNextAfterDescription,
     handleFinishBooking,
     handleBackToBedroomsDialog,
     handleBackToCleaningTypeDialog,
     handleBackToBathroomsDialog,
-    handleBackToAdditionalOptionsDialog
+    handleBackToAdditionalOptionsDialog,
+    handleBackToDescriptionDialog
   };
 }
