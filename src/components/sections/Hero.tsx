@@ -4,6 +4,7 @@ import { useToast } from "@/components/ui/use-toast";
 import SearchForm from '../hero/SearchForm';
 import BedroomsDialog from '../hero/BedroomsDialog';
 import BathroomsDialog from '../hero/BathroomsDialog';
+import CleaningTypeDialog from '../hero/CleaningTypeDialog';
 import TrustIndicators from '../hero/TrustIndicators';
 
 const Hero = () => {
@@ -11,8 +12,10 @@ const Hero = () => {
   const [zipCode, setZipCode] = useState('');
   const [showDialog, setShowDialog] = useState(false);
   const [showBathroomsDialog, setShowBathroomsDialog] = useState(false);
+  const [showCleaningTypeDialog, setShowCleaningTypeDialog] = useState(false);
   const [selectedBedrooms, setSelectedBedrooms] = useState<number | null>(null);
   const [selectedBathrooms, setSelectedBathrooms] = useState<number | null>(null);
+  const [selectedCleaningType, setSelectedCleaningType] = useState<string | null>(null);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [selectedPhrase, setSelectedPhrase] = useState<string | null>(null);
   const { toast } = useToast();
@@ -58,6 +61,10 @@ const Hero = () => {
     setSelectedBathrooms(option);
   };
 
+  const handleCleaningTypeSelect = (option: string) => {
+    setSelectedCleaningType(option);
+  };
+
   const handleNextAfterBedrooms = () => {
     if (!selectedBedrooms) {
       toast({
@@ -83,14 +90,29 @@ const Hero = () => {
       return;
     }
 
+    // Close bathrooms dialog and open cleaning type dialog
+    setShowBathroomsDialog(false);
+    setShowCleaningTypeDialog(true);
+  };
+
+  const handleNextAfterCleaningType = () => {
+    if (!selectedCleaningType) {
+      toast({
+        title: "Please select an option",
+        description: "Select the type of cleaning you need to continue",
+        variant: "destructive",
+      });
+      return;
+    }
+
     // Process the completed form data
     toast({
       title: "Information Submitted",
-      description: `You selected ${selectedBedrooms} bedroom(s) and ${selectedBathrooms} bathroom(s)`,
+      description: `You selected ${selectedBedrooms} bedroom(s), ${selectedBathrooms} bathroom(s), and ${selectedCleaningType} cleaning`,
     });
     
-    // Close the bathrooms dialog
-    setShowBathroomsDialog(false);
+    // Close the cleaning type dialog
+    setShowCleaningTypeDialog(false);
   };
 
   return (
@@ -144,6 +166,19 @@ const Hero = () => {
           setShowDialog(true);
         }}
         onNext={handleNextAfterBathrooms}
+      />
+
+      {/* Cleaning Type Selection Dialog */}
+      <CleaningTypeDialog 
+        open={showCleaningTypeDialog}
+        onOpenChange={setShowCleaningTypeDialog}
+        selectedCleaningType={selectedCleaningType}
+        onCleaningTypeSelect={handleCleaningTypeSelect}
+        onBack={() => {
+          setShowCleaningTypeDialog(false);
+          setShowBathroomsDialog(true);
+        }}
+        onNext={handleNextAfterCleaningType}
       />
     </div>
   );
