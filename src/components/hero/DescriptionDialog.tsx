@@ -57,7 +57,7 @@ const DescriptionDialog: React.FC<DescriptionDialogProps> = ({
             onClick={onSkip}
             className="w-1/2 py-2 rounded-md text-white font-medium bg-blue hover:bg-blue-dark"
           >
-            Skip
+            {description.trim() ? "Send" : "Skip"}
           </Button>
         </div>
       </DialogContent>
