@@ -96,20 +96,20 @@ const Hero = () => {
 
       {/* Dialog for bedroom selection */}
       <Dialog open={showDialog} onOpenChange={setShowDialog}>
-        <DialogContent className="sm:max-w-md bg-white rounded-lg p-6">
-          <DialogHeader>
+        <DialogContent className="sm:max-w-lg bg-white rounded-lg p-8"> {/* Increased size with max-w-lg and p-8 */}
+          <DialogHeader className="relative">
             <DialogTitle className="text-center text-2xl font-semibold">
               How many bedrooms are there?
             </DialogTitle>
             <button 
               onClick={() => setShowDialog(false)}
-              className="absolute right-4 top-4 rounded-sm opacity-70 hover:opacity-100 focus:outline-none"
+              className="absolute -right-2 -top-2 rounded-sm opacity-70 hover:opacity-100 focus:outline-none"
             >
               <X className="h-5 w-5" />
             </button>
           </DialogHeader>
           
-          <div className="mt-6 flex flex-col space-y-3">
+          <div className="mt-6 flex flex-col space-y-4"> {/* Slightly increased spacing */}
             {[1, 2, 3, 4, 5, 6].map((num) => (
               <label key={num} className="flex items-center cursor-pointer">
                 <div className="flex items-center justify-center w-6 h-6 mr-4">
