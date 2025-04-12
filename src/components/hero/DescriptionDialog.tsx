@@ -10,7 +10,7 @@ interface DescriptionDialogProps {
   description: string;
   onDescriptionChange: (value: string) => void;
   onBack: () => void;
-  onSkip: () => void;
+  onNext: () => void;
 }
 
 const DescriptionDialog: React.FC<DescriptionDialogProps> = ({
@@ -19,7 +19,7 @@ const DescriptionDialog: React.FC<DescriptionDialogProps> = ({
   description,
   onDescriptionChange,
   onBack,
-  onSkip
+  onNext
 }) => {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -54,7 +54,7 @@ const DescriptionDialog: React.FC<DescriptionDialogProps> = ({
           </Button>
           <Button 
             type="button"
-            onClick={onSkip}
+            onClick={onNext}
             className="w-1/2 py-2 rounded-md text-white font-medium bg-blue hover:bg-blue-dark"
           >
             {description.trim() ? "Send" : "Skip"}
