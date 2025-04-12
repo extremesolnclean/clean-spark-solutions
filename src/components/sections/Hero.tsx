@@ -1,22 +1,68 @@
-import React, { useState } from 'react';
+
+import React, { useState, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { ArrowRight, MapPin, Star } from 'lucide-react';
+import { ArrowRight, MapPin, Star, Search } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { useToast } from "@/components/ui/use-toast";
 
 const Hero = () => {
   const [jobDescription, setJobDescription] = useState('');
   const [zipCode, setZipCode] = useState('');
   const [showDialog, setShowDialog] = useState(false);
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [selectedPhrase, setSelectedPhrase] = useState<string | null>(null);
+  const { toast } = useToast();
+
+  // Predefined phrases
+  const predefinedPhrases = [
+    "I'm looking for a house cleaner",
+    "Need commercial cleaning service for my office",
+    "Looking for sofa cleaning services",
+    "Need house painting services",
+    "Need carpet shampooing service"
+  ];
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!selectedPhrase) {
+      toast({
+        title: "Please select a service",
+        description: "Choose one of the suggested services to continue",
+        variant: "destructive",
+      });
+      return;
+    }
+    
     setShowDialog(true);
+  };
+
+  const handlePhraseSelect = (phrase: string) => {
+    setJobDescription(phrase);
+    setSelectedPhrase(phrase);
+    setShowSuggestions(false);
   };
 
   const handleOptionSelect = (option: number) => {
     setSelectedOption(option);
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setJobDescription(e.target.value);
+    if (e.target.value.length > 0) {
+      setShowSuggestions(true);
+    } else {
+      setShowSuggestions(false);
+    }
+    setSelectedPhrase(null);
+  };
+
+  const handleInputFocus = () => {
+    if (jobDescription.length > 0 && !selectedPhrase) {
+      setShowSuggestions(true);
+    }
   };
 
   return (
@@ -33,13 +79,14 @@ const Hero = () => {
             Trusted cleaning services in 8 major cities. We bring sparkle to your home while you focus on what matters most.
           </p>
           
-          <div className="max-w-3xl mx-auto">
+          <div className="max-w-3xl mx-auto relative">
             <form onSubmit={handleSearch} className="flex flex-col md:flex-row gap-3 md:gap-0 p-2 md:p-3 bg-white rounded-full shadow-lg">
               <div className="flex-grow px-2 md:px-4 py-2 md:py-0">
                 <Input 
                   type="text" 
                   value={jobDescription}
-                  onChange={(e) => setJobDescription(e.target.value)}
+                  onChange={handleInputChange}
+                  onFocus={handleInputFocus}
                   placeholder="Describe your cleaning project or problem — be as detailed as you'd like" 
                   className="border-0 text-base md:text-lg h-12 focus:ring-0 pl-1 shadow-none"
                 />
@@ -61,6 +108,27 @@ const Hero = () => {
                 </Button>
               </div>
             </form>
+            
+            {/* Suggestions dropdown */}
+            {showSuggestions && (
+              <div className="absolute left-0 right-0 mt-2 bg-white rounded-lg shadow-lg border border-gray-200 z-40">
+                <div className="p-3 border-b border-gray-100">
+                  <p className="text-sm font-medium text-gray-500">Popular searches</p>
+                </div>
+                <div className="py-2">
+                  {predefinedPhrases.map((phrase, index) => (
+                    <button 
+                      key={index} 
+                      className={`w-full text-left px-4 py-3 flex items-center hover:bg-gray-50 ${selectedPhrase === phrase ? 'bg-gray-50' : ''}`}
+                      onClick={() => handlePhraseSelect(phrase)}
+                    >
+                      <Search className="text-gray-400 mr-3" size={18} />
+                      <span className="text-gray-700">{phrase}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
           
           <div className="flex items-center justify-center mt-6 text-gray-600 text-sm">
