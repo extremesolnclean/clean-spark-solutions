@@ -15,7 +15,7 @@ const testimonials = [
     location: 'Los Angeles, CA',
     rating: 5,
     image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&q=75&fit=crop&w=120&h=120',
-    text: 'I've tried several cleaning services in LA, but Extreme Solutions stands out. The team is professional, thorough, and always on time. They've made my busy life so much easier!',
+    text: "I've tried several cleaning services in LA, but Extreme Solutions stands out. The team is professional, thorough, and always on time. They've made my busy life so much easier!",
   },
   {
     name: 'Jennifer Parker',
@@ -29,7 +29,7 @@ const testimonials = [
     location: 'Boston, MA',
     rating: 5,
     image: 'https://images.unsplash.com/photo-1600486913747-55e5470d6f40?auto=format&q=75&fit=crop&w=120&h=120',
-    text: 'What impresses me most about Extreme Solutions is their consistency. Every cleaning is as thorough as the last, and they're very responsive to special requests. Excellent service!',
+    text: "What impresses me most about Extreme Solutions is their consistency. Every cleaning is as thorough as the last, and they're very responsive to special requests. Excellent service!",
   },
   {
     name: 'Amanda Martinez',
