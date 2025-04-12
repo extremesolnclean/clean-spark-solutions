@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { useToast } from "@/hooks/use-toast";
 
@@ -9,12 +8,14 @@ export interface HeroState {
   showBathroomsDialog: boolean;
   showCleaningTypeDialog: boolean;
   showAdditionalOptionsDialog: boolean;
+  showDateSelectionDialog: boolean;
   showDescriptionDialog: boolean;
   showContactInfoDialog: boolean;
   selectedBedrooms: number | null;
   selectedBathrooms: number | null;
   selectedCleaningType: string | null;
   selectedAdditionalOptions: string[];
+  selectedDate: Date | undefined;
   description: string;
   fullName: string;
   email: string;
@@ -30,12 +31,14 @@ export interface HeroActions {
   setShowBathroomsDialog: (value: boolean) => void;
   setShowCleaningTypeDialog: (value: boolean) => void;
   setShowAdditionalOptionsDialog: (value: boolean) => void;
+  setShowDateSelectionDialog: (value: boolean) => void;
   setShowDescriptionDialog: (value: boolean) => void;
   setShowContactInfoDialog: (value: boolean) => void;
   handleBedroomSelect: (option: number) => void;
   handleBathroomSelect: (option: number) => void;
   handleCleaningTypeSelect: (option: string) => void;
   handleAdditionalOptionToggle: (option: string) => void;
+  handleDateSelect: (date: Date | undefined) => void;
   handleDescriptionChange: (value: string) => void;
   handleFullNameChange: (value: string) => void;
   handleEmailChange: (value: string) => void;
@@ -59,12 +62,14 @@ export function useHeroState() {
   const [showBathroomsDialog, setShowBathroomsDialog] = useState(false);
   const [showCleaningTypeDialog, setShowCleaningTypeDialog] = useState(false);
   const [showAdditionalOptionsDialog, setShowAdditionalOptionsDialog] = useState(false);
+  const [showDateSelectionDialog, setShowDateSelectionDialog] = useState(false);
   const [showDescriptionDialog, setShowDescriptionDialog] = useState(false);
   const [showContactInfoDialog, setShowContactInfoDialog] = useState(false);
   const [selectedBedrooms, setSelectedBedrooms] = useState<number | null>(null);
   const [selectedBathrooms, setSelectedBathrooms] = useState<number | null>(null);
   const [selectedCleaningType, setSelectedCleaningType] = useState<string | null>(null);
   const [selectedAdditionalOptions, setSelectedAdditionalOptions] = useState<string[]>([]);
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
   const [description, setDescription] = useState('');
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
@@ -95,6 +100,10 @@ export function useHeroState() {
     });
   };
 
+  const handleDateSelect = (date: Date | undefined) => {
+    setSelectedDate(date);
+  };
+
   const handleDescriptionChange = (value: string) => {
     setDescription(value);
   };
@@ -119,12 +128,14 @@ export function useHeroState() {
       showBathroomsDialog,
       showCleaningTypeDialog,
       showAdditionalOptionsDialog,
+      showDateSelectionDialog,
       showDescriptionDialog,
       showContactInfoDialog,
       selectedBedrooms,
       selectedBathrooms,
       selectedCleaningType,
       selectedAdditionalOptions,
+      selectedDate,
       description,
       fullName,
       email,
@@ -139,12 +150,14 @@ export function useHeroState() {
       setShowBathroomsDialog,
       setShowCleaningTypeDialog,
       setShowAdditionalOptionsDialog,
+      setShowDateSelectionDialog,
       setShowDescriptionDialog,
       setShowContactInfoDialog,
       handleBedroomSelect,
       handleBathroomSelect,
       handleCleaningTypeSelect,
       handleAdditionalOptionToggle,
+      handleDateSelect,
       handleDescriptionChange,
       handleFullNameChange,
       handleEmailChange,

@@ -1,4 +1,5 @@
 
+import { format } from 'date-fns';
 import { HeroState, HeroActions } from "./HeroState";
 import { toast as toastFunction } from "@/hooks/use-toast";
 
@@ -79,8 +80,23 @@ export function useHeroHandlers({ state, actions, toast }: HeroHandlersProps) {
   };
 
   const handleNextAfterAdditionalOptions = () => {
-    // Close the additional options dialog and open description dialog
+    // Close the additional options dialog and open date selection dialog
     actions.setShowAdditionalOptionsDialog(false);
+    actions.setShowDateSelectionDialog(true);
+  };
+
+  const handleNextAfterDateSelection = () => {
+    if (!state.selectedDate) {
+      toast({
+        title: "Please select a date",
+        description: "Select a preferred date for your cleaning service",
+        variant: "destructive",
+      });
+      return;
+    }
+    
+    // Close date selection dialog and open description dialog
+    actions.setShowDateSelectionDialog(false);
     actions.setShowDescriptionDialog(true);
   };
 
@@ -119,11 +135,14 @@ export function useHeroHandlers({ state, actions, toast }: HeroHandlersProps) {
       });
       return;
     }
+
+    // Format the date to display in the toast
+    const formattedDate = state.selectedDate ? format(state.selectedDate, 'MMMM d, yyyy') : "";
     
     // Process the completed form data with all selections
     toast({
       title: "Booking Submitted",
-      description: `Thank you, ${state.fullName}! We've received your request for ${state.selectedBedrooms} bedroom(s), ${state.selectedBathrooms} bathroom(s) with ${state.selectedCleaningType} cleaning. We'll be in touch soon!`,
+      description: `Thank you, ${state.fullName}! We've received your request for ${state.selectedBedrooms} bedroom(s), ${state.selectedBathrooms} bathroom(s) with ${state.selectedCleaningType} cleaning on ${formattedDate}. We'll be in touch soon!`,
     });
     
     // Close the contact info dialog
@@ -146,8 +165,13 @@ export function useHeroHandlers({ state, actions, toast }: HeroHandlersProps) {
   };
 
   const handleBackToAdditionalOptionsDialog = () => {
-    actions.setShowDescriptionDialog(false);
+    actions.setShowDateSelectionDialog(false);
     actions.setShowAdditionalOptionsDialog(true);
+  };
+
+  const handleBackToDateSelectionDialog = () => {
+    actions.setShowDescriptionDialog(false);
+    actions.setShowDateSelectionDialog(true);
   };
 
   const handleBackToDescriptionDialog = () => {
@@ -161,12 +185,14 @@ export function useHeroHandlers({ state, actions, toast }: HeroHandlersProps) {
     handleNextAfterBathrooms,
     handleNextAfterCleaningType,
     handleNextAfterAdditionalOptions,
+    handleNextAfterDateSelection,
     handleNextAfterDescription,
     handleFinishBooking,
     handleBackToBedroomsDialog,
     handleBackToCleaningTypeDialog,
     handleBackToBathroomsDialog,
     handleBackToAdditionalOptionsDialog,
+    handleBackToDateSelectionDialog,
     handleBackToDescriptionDialog
   };
 }

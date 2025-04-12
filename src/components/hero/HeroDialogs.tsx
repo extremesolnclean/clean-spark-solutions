@@ -4,6 +4,7 @@ import BedroomsDialog from './BedroomsDialog';
 import BathroomsDialog from './BathroomsDialog';
 import CleaningTypeDialog from './CleaningTypeDialog';
 import AdditionalOptionsDialog from './AdditionalOptionsDialog';
+import DateSelectionDialog from './DateSelectionDialog';
 import DescriptionDialog from './DescriptionDialog';
 import ContactInfoDialog from './ContactInfoDialog';
 import { HeroState, HeroActions } from './HeroState';
@@ -16,12 +17,14 @@ interface HeroDialogsProps {
     handleNextAfterBathrooms: () => void;
     handleNextAfterCleaningType: () => void;
     handleNextAfterAdditionalOptions: () => void;
+    handleNextAfterDateSelection: () => void;
     handleNextAfterDescription: () => void;
     handleFinishBooking: () => void;
     handleBackToBedroomsDialog: () => void;
     handleBackToCleaningTypeDialog: () => void;
     handleBackToBathroomsDialog: () => void;
     handleBackToAdditionalOptionsDialog: () => void;
+    handleBackToDateSelectionDialog: () => void;
     handleBackToDescriptionDialog: () => void;
   };
 }
@@ -68,13 +71,23 @@ const HeroDialogs: React.FC<HeroDialogsProps> = ({ state, actions, handlers }) =
         onNext={handlers.handleNextAfterAdditionalOptions}
       />
 
+      {/* Date Selection Dialog */}
+      <DateSelectionDialog
+        open={state.showDateSelectionDialog}
+        onOpenChange={actions.setShowDateSelectionDialog}
+        selectedDate={state.selectedDate}
+        onDateSelect={actions.handleDateSelect}
+        onBack={handlers.handleBackToAdditionalOptionsDialog}
+        onNext={handlers.handleNextAfterDateSelection}
+      />
+
       {/* Description Dialog */}
       <DescriptionDialog
         open={state.showDescriptionDialog}
         onOpenChange={actions.setShowDescriptionDialog}
         description={state.description}
         onDescriptionChange={actions.handleDescriptionChange}
-        onBack={handlers.handleBackToAdditionalOptionsDialog}
+        onBack={handlers.handleBackToDateSelectionDialog}
         onNext={handlers.handleNextAfterDescription}
       />
 
