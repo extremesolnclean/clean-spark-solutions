@@ -1,11 +1,11 @@
 
 import { HeroState, HeroActions } from "./HeroState";
-import { Toast } from "@/hooks/use-toast";
+import { toast as toastFunction } from "@/hooks/use-toast";
 
 export interface HeroHandlersProps {
   state: HeroState;
   actions: HeroActions;
-  toast: Toast;
+  toast: typeof toastFunction;
 }
 
 export function useHeroHandlers({ state, actions, toast }: HeroHandlersProps) {
