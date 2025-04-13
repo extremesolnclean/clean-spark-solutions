@@ -20,7 +20,7 @@ const HeroContent: React.FC<HeroContentProps> = ({ state, actions, handleSearch 
         </span>
       </h1>
       <p className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto">
-        Trusted cleaning services in 8 major cities. We bring sparkle to your home while you focus on what matters most.
+        Find the perfect cleaning service for your home in our 8 service areas.
       </p>
       
       <SearchForm 
