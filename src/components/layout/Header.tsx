@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -24,8 +23,17 @@ const Header = () => {
     >
       <div className="container mx-auto px-4 flex items-center justify-between">
         <div className="flex items-center">
-          <a href="/" className="font-bold text-xl md:text-2xl text-blue">
-            Extreme<span className="text-gray-800">Solutions</span>
+          <a href="/" className="flex items-center">
+            <img 
+              src="/images/logo/logo.png" 
+              alt="Extreme Solutions Cleaning Logo"
+              width="40"
+              height="40"
+              className="mr-3"
+            />
+            <span className="font-bold text-xl md:text-2xl text-blue">
+              Extreme<span className="text-gray-800">Solutions</span>
+            </span>
           </a>
         </div>
 
@@ -44,7 +52,7 @@ const Header = () => {
             Contact
           </a>
           <Button variant="outline" className="rounded-full border-blue text-blue hover:bg-blue-50">
-            <Phone size={16} className="mr-2" /> (555) 123-4567
+            <Phone size={16} className="mr-2" /> (630) 550-6605
           </Button>
           <Button className="rounded-full bg-blue hover:bg-blue-dark">
             Book Now
@@ -93,7 +101,7 @@ const Header = () => {
               Contact
             </a>
             <Button variant="outline" className="w-full justify-center rounded-full border-blue text-blue hover:bg-blue-50">
-              <Phone size={16} className="mr-2" /> (555) 123-4567
+              <Phone size={16} className="mr-2" /> (630) 550-6605
             </Button>
             <Button className="w-full justify-center rounded-full bg-blue hover:bg-blue-dark">
               Book Now

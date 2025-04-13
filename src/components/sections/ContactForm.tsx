@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -33,7 +32,7 @@ const ContactForm = () => {
                 <div>
                   <h3 className="font-medium text-gray-900 mb-1">Phone</h3>
                   <p className="text-gray-600">Mon-Fri, 8am-7pm EST</p>
-                  <a href="tel:+15551234567" className="text-blue hover:underline">(555) 123-4567</a>
+                  <a href="tel:+16305506605" className="text-blue hover:underline">(630) 550-6605</a>
                 </div>
               </div>
               
@@ -44,8 +43,8 @@ const ContactForm = () => {
                 <div>
                   <h3 className="font-medium text-gray-900 mb-1">Email</h3>
                   <p className="text-gray-600">We'll respond within 24 hours</p>
-                  <a href="mailto:info@extremesolutionscleaning.com" className="text-blue hover:underline">
-                    info@extremesolutionscleaning.com
+                  <a href="mailto:support@extremesolnclean.com" className="text-blue hover:underline">
+                    support@extremesolnclean.com
                   </a>
                 </div>
               </div>
@@ -133,7 +132,7 @@ const ContactForm = () => {
                   <Input
                     id="phone"
                     type="tel"
-                    placeholder="(555) 123-4567"
+                    placeholder="(630) 550-6605"
                     className="input-field"
                     required
                   />

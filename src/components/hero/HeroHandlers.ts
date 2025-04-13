@@ -1,7 +1,7 @@
-
 import { format } from 'date-fns';
 import { HeroState, HeroActions } from "./HeroState";
 import { toast as toastFunction } from "@/hooks/use-toast";
+import { useEffect } from 'react';
 
 export interface HeroHandlersProps {
   state: HeroState;
@@ -178,6 +178,31 @@ export function useHeroHandlers({ state, actions, toast }: HeroHandlersProps) {
     actions.setShowContactInfoDialog(false);
     actions.setShowDescriptionDialog(true);
   };
+
+  // Effect for Bedrooms -> Bathrooms transition
+  useEffect(() => {
+    // Check if a bedroom is selected AND the bedrooms dialog was the one active
+    if (state.selectedBedrooms && state.showDialog) {
+      // No need for the validation toast here as handleNextAfterBedrooms already has it
+      handleNextAfterBedrooms();
+    }
+    // Dependencies: Watch for changes in selected bedrooms or dialog visibility
+    // Include the handler in dependencies as per React hooks rules
+  }, [state.selectedBedrooms, state.showDialog, handleNextAfterBedrooms]);
+
+  // Effect for Bathrooms -> Cleaning Type transition
+  useEffect(() => {
+    if (state.selectedBathrooms && state.showBathroomsDialog) {
+      handleNextAfterBathrooms();
+    }
+  }, [state.selectedBathrooms, state.showBathroomsDialog, handleNextAfterBathrooms]);
+
+  // Effect for Cleaning Type -> Additional Options transition
+  useEffect(() => {
+    if (state.selectedCleaningType && state.showCleaningTypeDialog) {
+      handleNextAfterCleaningType();
+    }
+  }, [state.selectedCleaningType, state.showCleaningTypeDialog, handleNextAfterCleaningType]);
 
   return {
     handleSearch,
