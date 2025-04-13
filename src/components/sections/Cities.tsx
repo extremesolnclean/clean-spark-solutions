@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { MapPin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -17,27 +16,27 @@ const cities = [
   {
     name: 'Orlando',
     description: 'Trusted cleaning professionals serving the Orlando metropolitan area.',
-    image: 'https://images.unsplash.com/photo-1615398959532-02c4ad9f6a96?auto=format&q=75&fit=crop&w=600'
+    image: 'https://images.unsplash.com/photo-1523712999610-f77fbcfc3843?auto=format&q=75&fit=crop&w=600'
   },
   {
     name: 'Newark',
     description: 'Professional home cleaning services throughout Newark and Essex County.',
-    image: 'https://images.unsplash.com/photo-1566396484907-32ee8547f3a2?auto=format&q=75&fit=crop&w=600'
+    image: 'https://images.unsplash.com/photo-1433086966358-54859d0ed716?auto=format&q=75&fit=crop&w=600'
   },
   {
     name: 'Boston',
     description: 'Serving Boston and neighboring communities with quality cleaning.',
-    image: 'https://images.unsplash.com/photo-1573616259898-ec7ee1d3ca41?auto=format&q=75&fit=crop&w=600'
+    image: 'https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&q=75&fit=crop&w=600'
   },
   {
     name: 'Charlotte',
     description: 'Bringing spotless homes to Charlotte and the surrounding region.',
-    image: 'https://images.unsplash.com/photo-1596397249129-c7a8f8718753?auto=format&q=75&fit=crop&w=600'
+    image: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&q=75&fit=crop&w=600'
   },
   {
     name: 'Hartford',
     description: 'Quality cleaning services for homes throughout Hartford and beyond.',
-    image: 'https://images.unsplash.com/photo-1569066873191-fd7a7cbb6e26?auto=format&q=75&fit=crop&w=600'
+    image: 'https://images.unsplash.com/photo-1426604966848-d7adac402bff?auto=format&q=75&fit=crop&w=600'
   },
   {
     name: 'San Francisco',

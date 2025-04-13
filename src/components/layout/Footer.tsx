@@ -20,16 +20,16 @@ const Footer = () => {
               Professional cleaning services dedicated to making your space spotless and your life easier.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-blue-light hover:text-white transition-colors">
+              <a href="https://www.facebook.com/profile.php?id=61564938880058" target="_blank" rel="noopener noreferrer" className="text-blue-light hover:text-white transition-colors">
                 <Facebook size={20} />
               </a>
-              <a href="#" className="text-blue-light hover:text-white transition-colors">
+              <a href="https://www.instagram.com/extremesolnclean/" target="_blank" rel="noopener noreferrer" className="text-blue-light hover:text-white transition-colors">
                 <Instagram size={20} />
               </a>
-              <a href="#" className="text-blue-light hover:text-white transition-colors">
+              <a href="https://maps.app.goo.gl/SBnGt92DtJ6QEarJ7" target="_blank" rel="noopener noreferrer" className="text-blue-light hover:text-white transition-colors">
                 <Twitter size={20} />
               </a>
-              <a href="#" className="text-blue-light hover:text-white transition-colors">
+              <a href="https://www.thumbtack.com/il/chicago/house-cleaning/extreme-solutions-cleaning-inc/service/533536174690787333?utm_medium=web&utm_source=txt&surface=sp" target="_blank" rel="noopener noreferrer" className="text-blue-light hover:text-white transition-colors">
                 <Linkedin size={20} />
               </a>
             </div>
@@ -62,13 +62,13 @@ const Footer = () => {
             <ul className="space-y-2 text-gray-300">
               <li className="flex items-center">
                 <Mail size={16} className="mr-2" /> 
-                <a href="mailto:info@extremesolutionscleaning.com" className="hover:text-blue-light transition-colors">
-                  info@extremesolutionscleaning.com
+                <a href="mailto:support@extremesolnclean.com" className="hover:text-blue-light transition-colors">
+                  support@extremesolnclean.com
                 </a>
               </li>
-              <li><a href="tel:+15551234567" className="hover:text-blue-light transition-colors">(555) 123-4567</a></li>
+              <li><a href="tel:+16305506605" className="hover:text-blue-light transition-colors">(630) 550-6605</a></li>
               <li><a href="#contact" className="hover:text-blue-light transition-colors">Contact Form</a></li>
-              <li><a href="#" className="hover:text-blue-light transition-colors">Support</a></li>
+              <li><a href="https://nextdoor.com/pages/extreme-solutions-cleaning-chicago-il/" target="_blank" rel="noopener noreferrer" className="hover:text-blue-light transition-colors">Nextdoor</a></li>
             </ul>
           </div>
         </div>
