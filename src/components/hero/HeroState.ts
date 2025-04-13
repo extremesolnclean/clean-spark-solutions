@@ -48,14 +48,11 @@ export interface HeroActions {
 }
 
 export const predefinedPhrases = [
-  "Standard Home Cleaning",
-  "Deep Cleaning",
-  "Move In/Out Cleaning",
-  "Vacation Rental Cleaning",
-  "Office Cleaning",
-  "Post-Construction Cleaning",
-  "Apartment Cleaning",
-  "Recurring Cleaning Service"
+  "House Cleaning",
+  "Commercial Cleaning",
+  "Sofa Cleaning",
+  "Carpet Cleaning",
+  "House Painting"
 ];
 
 export function useHeroState() {

@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -10,7 +9,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useToast } from "@/components/ui/use-toast";
+import { useToast } from "@/hooks/use-toast";
 
 interface SearchFormProps {
   jobDescription: string;
@@ -84,7 +83,7 @@ const SearchForm: React.FC<SearchFormProps> = ({
             type="text"
             value={zipCode}
             onChange={(e) => setZipCode(e.target.value)}
-            placeholder="ZIP Code (required)"
+            placeholder="ZIP Code"
             className="border-0 w-24 md:w-28 text-base md:text-lg focus:ring-0 px-1 shadow-none"
             required
           />
