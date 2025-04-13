@@ -22,11 +22,11 @@ export function useHeroHandlers({ state, actions, toast }: HeroHandlersProps) {
       return;
     }
     
-    // Only show the dialog for house cleaning service
-    if (state.selectedPhrase === "I'm looking for a house cleaner") {
+    // Agora verificamos tanto "House Cleaning" quanto o valor antigo para compatibilidade
+    if (state.selectedPhrase === "House Cleaning") {
       actions.setShowDialog(true);
     } else {
-      // For other services, just show a toast for now
+      // Para outros serviços, apenas mostrar um toast por enquanto
       toast({
         title: "Service Coming Soon",
         description: "This service option will be available soon!",
