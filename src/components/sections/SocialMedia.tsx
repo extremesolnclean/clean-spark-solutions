@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { Facebook, Instagram, Map, ThumbsUp } from 'lucide-react';
 
 const SocialMedia = () => {
-  // Initialize Facebook SDK
+  // Initialize Facebook SDK and other widgets
   useEffect(() => {
     // Load Facebook SDK
     const script = document.createElement('script');
@@ -26,6 +26,12 @@ const SocialMedia = () => {
     elfsightScript.async = true;
     document.body.appendChild(elfsightScript);
 
+    // Load Thumbtack script
+    const thumbtackScript = document.createElement('script');
+    thumbtackScript.src = "https://www.thumbtack.com/profile/widgets/scripts/?service_pk=533536174690787333&widget_id=review&type=star";
+    thumbtackScript.async = true;
+    document.body.appendChild(thumbtackScript);
+
     return () => {
       // Cleanup if needed
       if (script.parentNode) {
@@ -33,6 +39,9 @@ const SocialMedia = () => {
       }
       if (elfsightScript.parentNode) {
         document.body.removeChild(elfsightScript);
+      }
+      if (thumbtackScript.parentNode) {
+        document.body.removeChild(thumbtackScript);
       }
     };
   }, []);
@@ -91,16 +100,21 @@ const SocialMedia = () => {
               <ThumbsUp className="h-6 w-6 text-blue mr-2" />
               <h3 className="font-semibold text-xl">Thumbtack</h3>
             </div>
-            <div className="h-[300px] flex flex-col items-center justify-center border border-gray-200 rounded-lg p-4">
-              <p className="text-gray-500 text-center">
-                Check our reviews and book our services on Thumbtack
-              </p>
-              <div className="mt-4 text-sm text-gray-400">
-                <p>API Endpoint: app.thumbtack.com/graphql</p>
+            <div className="p-4">
+              <div className="widget" id="tt-review-widget-star">
+                <img src="https://cdn.thumbtackstatic.com/fe-assets-web/media/logos/thumbtack/wordmark.svg" alt="Thumbtack" className="tt-logo" />
+                <a target="_blank" href="https://www.thumbtack.com/il/chicago/house-cleaning/extreme-solutions-cleaning-inc/service/533536174690787333" rel="noopener noreferrer">
+                  <div>Extreme Solutions Cleaning Inc</div>
+                </a>
+                <div id="tt-dynamic">
+                  <img src="https://cdn.thumbtackstatic.com/fe-assets-web/media/pages/profile/standard-widgets/review-widget/orange_star.svg" alt="star" />
+                  <img src="https://cdn.thumbtackstatic.com/fe-assets-web/media/pages/profile/standard-widgets/review-widget/orange_star.svg" alt="star" />
+                  <img src="https://cdn.thumbtackstatic.com/fe-assets-web/media/pages/profile/standard-widgets/review-widget/orange_star.svg" alt="star" />
+                  <img src="https://cdn.thumbtackstatic.com/fe-assets-web/media/pages/profile/standard-widgets/review-widget/orange_star.svg" alt="star" />
+                  <img src="https://cdn.thumbtackstatic.com/fe-assets-web/media/pages/profile/standard-widgets/review-widget/orange_star.svg" alt="star" />
+                  <span>8 reviews</span>
+                </div>
               </div>
-              <a href="https://www.thumbtack.com/extreme-solutions-cleaning-inc" className="block mt-4 text-blue hover:underline" target="_blank" rel="noopener noreferrer">
-                See our Thumbtack profile
-              </a>
             </div>
           </div>
 
