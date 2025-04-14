@@ -20,10 +20,19 @@ const SocialMedia = () => {
       document.body.appendChild(fbRoot);
     }
 
+    // Load Elfsight script for Google Reviews
+    const elfsightScript = document.createElement('script');
+    elfsightScript.src = "https://static.elfsight.com/platform/platform.js";
+    elfsightScript.async = true;
+    document.body.appendChild(elfsightScript);
+
     return () => {
       // Cleanup if needed
       if (script.parentNode) {
         document.body.removeChild(script);
+      }
+      if (elfsightScript.parentNode) {
+        document.body.removeChild(elfsightScript);
       }
     };
   }, []);
@@ -95,17 +104,14 @@ const SocialMedia = () => {
             </div>
           </div>
 
-          {/* Google Widget Placeholder */}
+          {/* Google Widget */}
           <div className="social-card bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow">
             <div className="flex items-center mb-4">
               <Map className="h-6 w-6 text-blue mr-2" />
-              <h3 className="font-semibold text-xl">Google</h3>
+              <h3 className="font-semibold text-xl">Google Reviews</h3>
             </div>
-            <div className="h-[300px] flex flex-col items-center justify-center border border-gray-200 rounded-lg p-4">
-              <p className="text-gray-500">Google Maps integration coming soon</p>
-              <a href="https://maps.app.goo.gl/SBnGt92DtJ6QEarJ7" className="block mt-4 text-blue hover:underline" target="_blank" rel="noopener noreferrer">
-                Find us on Google Maps
-              </a>
+            <div className="p-4">
+              <div className="elfsight-app-bf85f069-170a-4d1f-b2cb-1233e03a6b40" data-elfsight-app-lazy></div>
             </div>
           </div>
         </div>
