@@ -80,18 +80,13 @@ const SocialMedia = () => {
             </div>
           </div>
 
-          {/* Instagram Widget Placeholder */}
+          {/* Instagram Widget - Updated with real Elfsight Instagram feed */}
           <div className="social-card bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow">
             <div className="flex items-center mb-4">
               <Instagram className="h-6 w-6 text-blue mr-2" />
               <h3 className="font-semibold text-xl">Instagram</h3>
             </div>
-            <div className="h-[300px] flex flex-col items-center justify-center border border-gray-200 rounded-lg p-4">
-              <p className="text-gray-500">Instagram feed coming soon</p>
-              <a href="https://www.instagram.com/extremesolnclean/" className="block mt-4 text-blue hover:underline" target="_blank" rel="noopener noreferrer">
-                Follow us on Instagram
-              </a>
-            </div>
+            <div className="elfsight-app-b135836f-a390-4cec-b750-00fdc0617c98" data-elfsight-app-lazy></div>
           </div>
 
           {/* Thumbtack Widget - Updated to new review widget */}
