@@ -1,7 +1,6 @@
 
 import React, { useEffect } from 'react';
 import { Facebook, Instagram, Map, ThumbsUp } from 'lucide-react';
-import { Card, CardContent, CardHeader } from '@/components/ui/card';
 
 const SocialMedia = () => {
   // Initialize Facebook SDK and other widgets
@@ -21,7 +20,7 @@ const SocialMedia = () => {
       document.body.appendChild(fbRoot);
     }
 
-    // Load Elfsight script for Google Reviews and Instagram
+    // Load Elfsight script for Google Reviews
     const elfsightScript = document.createElement('script');
     elfsightScript.src = "https://static.elfsight.com/platform/platform.js";
     elfsightScript.async = true;
@@ -60,110 +59,81 @@ const SocialMedia = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Facebook Widget - Using Card component */}
-          <Card className="shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden h-[500px]">
-            <CardHeader className="pb-2 border-b">
-              <div className="flex items-center">
-                <Facebook className="h-5 w-5 text-blue-500 mr-2" />
-                <h3 className="font-semibold text-lg">Facebook</h3>
-              </div>
-            </CardHeader>
-            <CardContent className="p-0 h-full">
-              <div className="fb-page h-full" 
-                data-href="https://www.facebook.com/profile.php?id=61564938880058"
-                data-tabs="timeline" 
-                data-width="" 
-                data-height="" 
-                data-small-header="false"
-                data-adapt-container-width="true" 
-                data-hide-cover="true" 
-                data-show-facepile="false">
-                <blockquote cite="https://www.facebook.com/profile.php?id=61564938880058" className="fb-xfbml-parse-ignore">
-                  <a href="https://www.facebook.com/profile.php?id=61564938880058">Extreme Solutions Cleaning</a>
-                </blockquote>
-              </div>
-            </CardContent>
-          </Card>
+          {/* Facebook Widget - Updated to show timeline */}
+          <div className="social-card bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow">
+            <div className="flex items-center mb-4">
+              <Facebook className="h-6 w-6 text-blue mr-2" />
+              <h3 className="font-semibold text-xl">Facebook</h3>
+            </div>
+            <div className="fb-page" 
+              data-href="https://www.facebook.com/profile.php?id=61564938880058"
+              data-tabs="timeline" 
+              data-width="" 
+              data-height="" 
+              data-small-header="false"
+              data-adapt-container-width="true" 
+              data-hide-cover="true" 
+              data-show-facepile="false">
+              <blockquote cite="https://www.facebook.com/profile.php?id=61564938880058" className="fb-xfbml-parse-ignore">
+                <a href="https://www.facebook.com/profile.php?id=61564938880058">Extreme Solutions Cleaning</a>
+              </blockquote>
+            </div>
+          </div>
 
-          {/* Instagram Widget - Using Card component */}
-          <Card className="shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden h-[500px]">
-            <CardHeader className="pb-2 border-b">
-              <div className="flex items-center">
-                <Instagram className="h-5 w-5 text-pink-500 mr-2" />
-                <h3 className="font-semibold text-lg">Instagram</h3>
-              </div>
-            </CardHeader>
-            <CardContent className="p-0 h-full overflow-hidden">
-              <div className="elfsight-app-b135836f-a390-4cec-b750-00fdc0617c98 h-full" data-elfsight-app-lazy></div>
-            </CardContent>
-          </Card>
+          {/* Instagram Widget - Updated with real Elfsight Instagram feed */}
+          <div className="social-card bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow">
+            <div className="flex items-center mb-4">
+              <Instagram className="h-6 w-6 text-blue mr-2" />
+              <h3 className="font-semibold text-xl">Instagram</h3>
+            </div>
+            <div className="elfsight-app-b135836f-a390-4cec-b750-00fdc0617c98" data-elfsight-app-lazy></div>
+          </div>
 
-          {/* Thumbtack Widget - Using Card component */}
-          <Card className="shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden h-[500px]">
-            <CardHeader className="pb-2 border-b">
-              <div className="flex items-center">
-                <ThumbsUp className="h-5 w-5 text-orange-500 mr-2" />
-                <h3 className="font-semibold text-lg">Thumbtack</h3>
-              </div>
-            </CardHeader>
-            <CardContent className="p-4 overflow-y-auto h-[calc(100%-60px)]">
+          {/* Thumbtack Widget - Updated to new review widget */}
+          <div className="social-card bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow">
+            <div className="flex items-center mb-4">
+              <ThumbsUp className="h-6 w-6 text-blue mr-2" />
+              <h3 className="font-semibold text-xl">Thumbtack</h3>
+            </div>
+            <div className="p-4">
               <div className="widget" id="tt-review-widget-one">
-                <img src="https://cdn.thumbtackstatic.com/fe-assets-web/media/logos/thumbtack/wordmark.svg" alt="Thumbtack" className="h-6 mb-4" />
-                <div id="tt-dynamic" className="flex flex-col">
-                  <div className="flex items-start mb-3">
-                    <div className="tt-left mr-3">
-                      <img 
-                        src="https://cdn.thumbtackstatic.com/fe-assets-web/_assets/images/release/components/avatar/images/legacy-default-avatar-50x50.25cbe35c0002a2eef6cbc5f1c4f271545eafbb59.png" 
-                        alt="avatar"
-                        className="w-12 h-12 rounded-full"
-                      />
-                    </div>
-                    <div className="tt-right flex-1">
-                      <div className="tt-name font-medium text-gray-900">Melissa R.</div>
-                      <div className="tt-stars flex items-center my-1">
-                        {[...Array(5)].map((_, i) => (
-                          <img 
-                            key={i}
-                            src="https://cdn.thumbtackstatic.com/fe-assets-web/media/pages/profile/standard-widgets/review-widget/orange_star.svg" 
-                            alt="star" 
-                            className="w-4 h-4"
-                          />
-                        ))}
-                        <span className="text-xs text-gray-500 ml-1">8 reviews</span>
-                        <span className="text-xs text-gray-500 ml-2">60d ago</span>
-                      </div>
-                      <p className="text-sm text-gray-700 mb-2">
-                        Excellent service I didn't know where to start. They came in and I didn't have to say a word. They worked their magic. My house looks n feels brand new I will def be a returning customer thank you for coming out to help.
-                        <br /><br />
-                        Also,that oven it should just b put in it's original box hahaha. She made sure to clean top to bottom and that stove was BAD..BAD. Thanks again :)
-                      </p>
-                      <a 
-                        target="_blank" 
-                        href="https://www.thumbtack.com/il/chicago/house-cleaning/extreme-solutions-cleaning-inc/service/533536174690787333" 
-                        rel="noopener noreferrer"
-                        className="text-sm text-blue-500 hover:underline"
-                      >
-                        See all reviews
-                      </a>
-                    </div>
+                <img src="https://cdn.thumbtackstatic.com/fe-assets-web/media/logos/thumbtack/wordmark.svg" alt="Thumbtack" />
+                <div id="tt-dynamic">
+                  <div className="tt-left">
+                    <img src="https://cdn.thumbtackstatic.com/fe-assets-web/_assets/images/release/components/avatar/images/legacy-default-avatar-50x50.25cbe35c0002a2eef6cbc5f1c4f271545eafbb59.png" alt="avatar" />
                   </div>
+                  <div className="tt-right">
+                    <div className="tt-name">Melissa R.</div>
+                    <div className="tt-stars">
+                      <img src="https://cdn.thumbtackstatic.com/fe-assets-web/media/pages/profile/standard-widgets/review-widget/orange_star.svg" alt="star" />
+                      <img src="https://cdn.thumbtackstatic.com/fe-assets-web/media/pages/profile/standard-widgets/review-widget/orange_star.svg" alt="star" />
+                      <img src="https://cdn.thumbtackstatic.com/fe-assets-web/media/pages/profile/standard-widgets/review-widget/orange_star.svg" alt="star" />
+                      <img src="https://cdn.thumbtackstatic.com/fe-assets-web/media/pages/profile/standard-widgets/review-widget/orange_star.svg" alt="star" />
+                      <img src="https://cdn.thumbtackstatic.com/fe-assets-web/media/pages/profile/standard-widgets/review-widget/orange_star.svg" alt="star" />
+                      <span>8 reviews</span>
+                      <span>60d ago</span>
+                    </div>
+                    <p>Excellent service I didn't know where to start. They came in and I didn't have to say a word. They worked their magic. My house looks n feels brand new I will def be a returning customer thank you for coming out to help.
+
+Also,that oven it should just b put in it's original box hahaha. She made sure to clean top to bottom and that stove was BAD..BAD. Thanks again :)</p>
+                    <a target="_blank" href="https://www.thumbtack.com/il/chicago/house-cleaning/extreme-solutions-cleaning-inc/service/533536174690787333" rel="noopener noreferrer">See all reviews</a>
+                  </div>
+                  <br/>
                 </div>
               </div>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
 
-          {/* Google Widget - Using Card component */}
-          <Card className="shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden h-[500px]">
-            <CardHeader className="pb-2 border-b">
-              <div className="flex items-center">
-                <Map className="h-5 w-5 text-red-500 mr-2" />
-                <h3 className="font-semibold text-lg">Google Reviews</h3>
-              </div>
-            </CardHeader>
-            <CardContent className="p-0 h-[calc(100%-60px)] overflow-hidden">
-              <div className="elfsight-app-bf85f069-170a-4d1f-b2cb-1233e03a6b40 h-full" data-elfsight-app-lazy></div>
-            </CardContent>
-          </Card>
+          {/* Google Widget */}
+          <div className="social-card bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow">
+            <div className="flex items-center mb-4">
+              <Map className="h-6 w-6 text-blue mr-2" />
+              <h3 className="font-semibold text-xl">Google Reviews</h3>
+            </div>
+            <div className="p-4">
+              <div className="elfsight-app-bf85f069-170a-4d1f-b2cb-1233e03a6b40" data-elfsight-app-lazy></div>
+            </div>
+          </div>
         </div>
 
         <div className="text-center mt-12">
