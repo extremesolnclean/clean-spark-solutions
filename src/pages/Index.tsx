@@ -5,7 +5,7 @@ import Hero from '@/components/sections/Hero';
 import Services from '@/components/sections/Services';
 import Cities from '@/components/sections/Cities';
 import Testimonials from '@/components/sections/Testimonials';
-import CTA from '@/components/sections/CTA';
+import SocialMedia from '@/components/sections/SocialMedia';
 import ContactForm from '@/components/sections/ContactForm';
 import Footer from '@/components/layout/Footer';
 
@@ -18,7 +18,7 @@ const Index = () => {
         <Services />
         <Cities />
         <Testimonials />
-        <CTA />
+        <SocialMedia />
         <ContactForm />
       </main>
       <Footer />
