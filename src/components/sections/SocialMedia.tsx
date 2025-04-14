@@ -7,7 +7,7 @@ const SocialMedia = () => {
   useEffect(() => {
     // Load Facebook SDK
     const script = document.createElement('script');
-    script.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v22.0&appId=681968907486539";
+    script.src = "https://connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v22.0&appId=681968907486539";
     script.async = true;
     script.defer = true;
     script.crossOrigin = "anonymous";
@@ -22,7 +22,9 @@ const SocialMedia = () => {
 
     return () => {
       // Cleanup if needed
-      document.body.removeChild(script);
+      if (script.parentNode) {
+        document.body.removeChild(script);
+      }
     };
   }, []);
 
@@ -47,13 +49,13 @@ const SocialMedia = () => {
             </div>
             <div className="fb-page" 
               data-href="https://www.facebook.com/profile.php?id=61564938880058"
-              data-tabs="timeline" 
-              data-width="340" 
-              data-height="300" 
+              data-tabs="" 
+              data-width="" 
+              data-height="" 
               data-small-header="false"
               data-adapt-container-width="true" 
-              data-hide-cover="false" 
-              data-show-facepile="true">
+              data-hide-cover="true" 
+              data-show-facepile="false">
               <blockquote cite="https://www.facebook.com/profile.php?id=61564938880058" className="fb-xfbml-parse-ignore">
                 <a href="https://www.facebook.com/profile.php?id=61564938880058">Extreme Solutions Cleaning</a>
               </blockquote>
@@ -66,24 +68,29 @@ const SocialMedia = () => {
               <Instagram className="h-6 w-6 text-blue mr-2" />
               <h3 className="font-semibold text-xl">Instagram</h3>
             </div>
-            <div className="h-[300px] flex items-center justify-center border border-gray-200 rounded-lg">
-              <p className="text-gray-500">Instagram widget coming soon</p>
+            <div className="h-[300px] flex flex-col items-center justify-center border border-gray-200 rounded-lg p-4">
+              <p className="text-gray-500">Instagram feed coming soon</p>
               <a href="https://www.instagram.com/extremesolnclean/" className="block mt-4 text-blue hover:underline" target="_blank" rel="noopener noreferrer">
                 Follow us on Instagram
               </a>
             </div>
           </div>
 
-          {/* Thumbtack Widget Placeholder */}
+          {/* Thumbtack Widget */}
           <div className="social-card bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow">
             <div className="flex items-center mb-4">
               <ThumbsUp className="h-6 w-6 text-blue mr-2" />
               <h3 className="font-semibold text-xl">Thumbtack</h3>
             </div>
-            <div className="h-[300px] flex items-center justify-center border border-gray-200 rounded-lg">
-              <p className="text-gray-500">Thumbtack widget coming soon</p>
+            <div className="h-[300px] flex flex-col items-center justify-center border border-gray-200 rounded-lg p-4">
+              <p className="text-gray-500 text-center">
+                Check our reviews and book our services on Thumbtack
+              </p>
+              <div className="mt-4 text-sm text-gray-400">
+                <p>API Endpoint: app.thumbtack.com/graphql</p>
+              </div>
               <a href="https://www.thumbtack.com/extreme-solutions-cleaning-inc" className="block mt-4 text-blue hover:underline" target="_blank" rel="noopener noreferrer">
-                See our Thumbtack reviews
+                See our Thumbtack profile
               </a>
             </div>
           </div>
@@ -94,8 +101,8 @@ const SocialMedia = () => {
               <Map className="h-6 w-6 text-blue mr-2" />
               <h3 className="font-semibold text-xl">Google</h3>
             </div>
-            <div className="h-[300px] flex items-center justify-center border border-gray-200 rounded-lg">
-              <p className="text-gray-500">Google widget coming soon</p>
+            <div className="h-[300px] flex flex-col items-center justify-center border border-gray-200 rounded-lg p-4">
+              <p className="text-gray-500">Google Maps integration coming soon</p>
               <a href="https://maps.app.goo.gl/SBnGt92DtJ6QEarJ7" className="block mt-4 text-blue hover:underline" target="_blank" rel="noopener noreferrer">
                 Find us on Google Maps
               </a>
