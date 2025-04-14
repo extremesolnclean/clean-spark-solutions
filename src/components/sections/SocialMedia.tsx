@@ -26,9 +26,9 @@ const SocialMedia = () => {
     elfsightScript.async = true;
     document.body.appendChild(elfsightScript);
 
-    // Load Thumbtack script
+    // Load Thumbtack script - updated to type "one"
     const thumbtackScript = document.createElement('script');
-    thumbtackScript.src = "https://www.thumbtack.com/profile/widgets/scripts/?service_pk=533536174690787333&widget_id=review&type=star";
+    thumbtackScript.src = "https://www.thumbtack.com/profile/widgets/scripts/?service_pk=533536174690787333&widget_id=review&type=one";
     thumbtackScript.async = true;
     document.body.appendChild(thumbtackScript);
 
@@ -59,7 +59,7 @@ const SocialMedia = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Facebook Widget */}
+          {/* Facebook Widget - Updated to show timeline */}
           <div className="social-card bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow">
             <div className="flex items-center mb-4">
               <Facebook className="h-6 w-6 text-blue mr-2" />
@@ -67,7 +67,7 @@ const SocialMedia = () => {
             </div>
             <div className="fb-page" 
               data-href="https://www.facebook.com/profile.php?id=61564938880058"
-              data-tabs="" 
+              data-tabs="timeline" 
               data-width="" 
               data-height="" 
               data-small-header="false"
@@ -94,25 +94,36 @@ const SocialMedia = () => {
             </div>
           </div>
 
-          {/* Thumbtack Widget */}
+          {/* Thumbtack Widget - Updated to new review widget */}
           <div className="social-card bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow">
             <div className="flex items-center mb-4">
               <ThumbsUp className="h-6 w-6 text-blue mr-2" />
               <h3 className="font-semibold text-xl">Thumbtack</h3>
             </div>
             <div className="p-4">
-              <div className="widget" id="tt-review-widget-star">
-                <img src="https://cdn.thumbtackstatic.com/fe-assets-web/media/logos/thumbtack/wordmark.svg" alt="Thumbtack" className="tt-logo" />
-                <a target="_blank" href="https://www.thumbtack.com/il/chicago/house-cleaning/extreme-solutions-cleaning-inc/service/533536174690787333" rel="noopener noreferrer">
-                  <div>Extreme Solutions Cleaning Inc</div>
-                </a>
+              <div className="widget" id="tt-review-widget-one">
+                <img src="https://cdn.thumbtackstatic.com/fe-assets-web/media/logos/thumbtack/wordmark.svg" alt="Thumbtack" />
                 <div id="tt-dynamic">
-                  <img src="https://cdn.thumbtackstatic.com/fe-assets-web/media/pages/profile/standard-widgets/review-widget/orange_star.svg" alt="star" />
-                  <img src="https://cdn.thumbtackstatic.com/fe-assets-web/media/pages/profile/standard-widgets/review-widget/orange_star.svg" alt="star" />
-                  <img src="https://cdn.thumbtackstatic.com/fe-assets-web/media/pages/profile/standard-widgets/review-widget/orange_star.svg" alt="star" />
-                  <img src="https://cdn.thumbtackstatic.com/fe-assets-web/media/pages/profile/standard-widgets/review-widget/orange_star.svg" alt="star" />
-                  <img src="https://cdn.thumbtackstatic.com/fe-assets-web/media/pages/profile/standard-widgets/review-widget/orange_star.svg" alt="star" />
-                  <span>8 reviews</span>
+                  <div className="tt-left">
+                    <img src="https://cdn.thumbtackstatic.com/fe-assets-web/_assets/images/release/components/avatar/images/legacy-default-avatar-50x50.25cbe35c0002a2eef6cbc5f1c4f271545eafbb59.png" alt="avatar" />
+                  </div>
+                  <div className="tt-right">
+                    <div className="tt-name">Melissa R.</div>
+                    <div className="tt-stars">
+                      <img src="https://cdn.thumbtackstatic.com/fe-assets-web/media/pages/profile/standard-widgets/review-widget/orange_star.svg" alt="star" />
+                      <img src="https://cdn.thumbtackstatic.com/fe-assets-web/media/pages/profile/standard-widgets/review-widget/orange_star.svg" alt="star" />
+                      <img src="https://cdn.thumbtackstatic.com/fe-assets-web/media/pages/profile/standard-widgets/review-widget/orange_star.svg" alt="star" />
+                      <img src="https://cdn.thumbtackstatic.com/fe-assets-web/media/pages/profile/standard-widgets/review-widget/orange_star.svg" alt="star" />
+                      <img src="https://cdn.thumbtackstatic.com/fe-assets-web/media/pages/profile/standard-widgets/review-widget/orange_star.svg" alt="star" />
+                      <span>8 reviews</span>
+                      <span>60d ago</span>
+                    </div>
+                    <p>Excellent service I didn't know where to start. They came in and I didn't have to say a word. They worked their magic. My house looks n feels brand new I will def be a returning customer thank you for coming out to help.
+
+Also,that oven it should just b put in it's original box hahaha. She made sure to clean top to bottom and that stove was BAD..BAD. Thanks again :)</p>
+                    <a target="_blank" href="https://www.thumbtack.com/il/chicago/house-cleaning/extreme-solutions-cleaning-inc/service/533536174690787333" rel="noopener noreferrer">See all reviews</a>
+                  </div>
+                  <br/>
                 </div>
               </div>
             </div>
