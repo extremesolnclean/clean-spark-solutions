@@ -1,4 +1,3 @@
-
 import React from 'react';
 import BedroomsDialog from './BedroomsDialog';
 import BathroomsDialog from './BathroomsDialog';
@@ -19,7 +18,7 @@ interface HeroDialogsProps {
     handleNextAfterAdditionalOptions: () => void;
     handleNextAfterDateSelection: () => void;
     handleNextAfterDescription: () => void;
-    handleFinishBooking: () => void;
+    handleFinishBooking: (data: { fullName: string; email: string; phoneNumber: string }) => void;
     handleBackToBedroomsDialog: () => void;
     handleBackToCleaningTypeDialog: () => void;
     handleBackToBathroomsDialog: () => void;
@@ -75,8 +74,8 @@ const HeroDialogs: React.FC<HeroDialogsProps> = ({ state, actions, handlers }) =
       <DateSelectionDialog
         open={state.showDateSelectionDialog}
         onOpenChange={actions.setShowDateSelectionDialog}
-        selectedDate={state.selectedDate}
-        onDateSelect={actions.handleDateSelect}
+        selectedDateRange={state.selectedDateRange}
+        onDateRangeSelect={actions.handleDateRangeSelect}
         onBack={handlers.handleBackToAdditionalOptionsDialog}
         onNext={handlers.handleNextAfterDateSelection}
       />
@@ -95,12 +94,6 @@ const HeroDialogs: React.FC<HeroDialogsProps> = ({ state, actions, handlers }) =
       <ContactInfoDialog
         open={state.showContactInfoDialog}
         onOpenChange={actions.setShowContactInfoDialog}
-        fullName={state.fullName}
-        email={state.email}
-        phoneNumber={state.phoneNumber}
-        onFullNameChange={actions.handleFullNameChange}
-        onEmailChange={actions.handleEmailChange}
-        onPhoneNumberChange={actions.handlePhoneNumberChange}
         onBack={handlers.handleBackToDescriptionDialog}
         onSubmit={handlers.handleFinishBooking}
       />

@@ -1,7 +1,7 @@
 import { format } from 'date-fns';
 import { HeroState, HeroActions } from "./HeroState";
 import { toast as toastFunction } from "@/hooks/use-toast";
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 export interface HeroHandlersProps {
   state: HeroState;
@@ -10,6 +10,11 @@ export interface HeroHandlersProps {
 }
 
 export function useHeroHandlers({ state, actions, toast }: HeroHandlersProps) {
+  // Refs to track previous selection values
+  const prevSelectedBedrooms = useRef(state.selectedBedrooms);
+  const prevSelectedBathrooms = useRef(state.selectedBathrooms);
+  const prevSelectedCleaningType = useRef(state.selectedCleaningType);
+
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -86,10 +91,10 @@ export function useHeroHandlers({ state, actions, toast }: HeroHandlersProps) {
   };
 
   const handleNextAfterDateSelection = () => {
-    if (!state.selectedDate) {
+    if (!state.selectedDateRange?.from) {
       toast({
-        title: "Please select a date",
-        description: "Select a preferred date for your cleaning service",
+        title: "Please select a date or range",
+        description: "Select a preferred date or date range for your cleaning service",
         variant: "destructive",
       });
       return;
@@ -106,43 +111,28 @@ export function useHeroHandlers({ state, actions, toast }: HeroHandlersProps) {
     actions.setShowContactInfoDialog(true);
   };
 
-  const handleFinishBooking = () => {
+  const handleFinishBooking = (data: { fullName: string; email: string; phoneNumber: string }) => {
     // Validate email format
-    if (state.fullName.trim() === '') {
-      toast({
-        title: "Please enter your full name",
-        description: "We need your name to process your booking",
-        variant: "destructive",
-      });
-      return;
-    }
-    
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(state.email)) {
-      toast({
-        title: "Invalid email",
-        description: "Please enter a valid email address",
-        variant: "destructive",
-      });
-      return;
-    }
-    
-    if (state.phoneNumber.trim() === '') {
-      toast({
-        title: "Please enter your phone number",
-        description: "We need your phone number to process your booking",
-        variant: "destructive",
-      });
+    if (!emailRegex.test(data.email)) {
+      toast({ title: "Invalid email", description: "Please enter a valid email address", variant: "destructive" });
       return;
     }
 
-    // Format the date to display in the toast
-    const formattedDate = state.selectedDate ? format(state.selectedDate, 'MMMM d, yyyy') : "";
+    // Format the date/range for the toast message
+    let formattedDate = "No date selected";
+    if (state.selectedDateRange?.from) {
+      if (!state.selectedDateRange.to || state.selectedDateRange.from === state.selectedDateRange.to) {
+        formattedDate = `on ${format(state.selectedDateRange.from, 'MMMM d, yyyy')}`;
+      } else {
+        formattedDate = `between ${format(state.selectedDateRange.from, 'MMM d')} and ${format(state.selectedDateRange.to, 'MMM d, yyyy')}`;
+      }
+    }
     
     // Process the completed form data with all selections
     toast({
       title: "Booking Submitted",
-      description: `Thank you, ${state.fullName}! We've received your request for ${state.selectedBedrooms} bedroom(s), ${state.selectedBathrooms} bathroom(s) with ${state.selectedCleaningType} cleaning on ${formattedDate}. We'll be in touch soon!`,
+      description: `Thank you, ${data.fullName}! We've received your request for ${state.selectedBedrooms} bedroom(s), ${state.selectedBathrooms} bathroom(s) with ${state.selectedCleaningType} cleaning ${formattedDate}. We'll be in touch soon!`,
     });
     
     // Close the contact info dialog
@@ -181,27 +171,38 @@ export function useHeroHandlers({ state, actions, toast }: HeroHandlersProps) {
 
   // Effect for Bedrooms -> Bathrooms transition
   useEffect(() => {
-    // Check if a bedroom is selected AND the bedrooms dialog was the one active
-    if (state.selectedBedrooms && state.showDialog) {
-      // No need for the validation toast here as handleNextAfterBedrooms already has it
+    if (
+      state.showDialog &&
+      state.selectedBedrooms !== null &&
+      state.selectedBedrooms !== prevSelectedBedrooms.current
+    ) {
       handleNextAfterBedrooms();
     }
-    // Dependencies: Watch for changes in selected bedrooms or dialog visibility
-    // Include the handler in dependencies as per React hooks rules
+    prevSelectedBedrooms.current = state.selectedBedrooms;
   }, [state.selectedBedrooms, state.showDialog, handleNextAfterBedrooms]);
 
   // Effect for Bathrooms -> Cleaning Type transition
   useEffect(() => {
-    if (state.selectedBathrooms && state.showBathroomsDialog) {
+    if (
+      state.showBathroomsDialog &&
+      state.selectedBathrooms !== null &&
+      state.selectedBathrooms !== prevSelectedBathrooms.current
+    ) {
       handleNextAfterBathrooms();
     }
+    prevSelectedBathrooms.current = state.selectedBathrooms;
   }, [state.selectedBathrooms, state.showBathroomsDialog, handleNextAfterBathrooms]);
 
   // Effect for Cleaning Type -> Additional Options transition
   useEffect(() => {
-    if (state.selectedCleaningType && state.showCleaningTypeDialog) {
+    if (
+      state.showCleaningTypeDialog &&
+      state.selectedCleaningType !== null &&
+      state.selectedCleaningType !== prevSelectedCleaningType.current
+    ) {
       handleNextAfterCleaningType();
     }
+    prevSelectedCleaningType.current = state.selectedCleaningType;
   }, [state.selectedCleaningType, state.showCleaningTypeDialog, handleNextAfterCleaningType]);
 
   return {

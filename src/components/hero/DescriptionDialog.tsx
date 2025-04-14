@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
@@ -57,7 +56,7 @@ const DescriptionDialog: React.FC<DescriptionDialogProps> = ({
             onClick={onNext}
             className="w-1/2 py-2 rounded-md text-white font-medium bg-blue hover:bg-blue-dark"
           >
-            {description.trim() ? "Send" : "Skip"}
+            {description.trim() ? "Next" : "Skip"}
           </Button>
         </div>
       </DialogContent>

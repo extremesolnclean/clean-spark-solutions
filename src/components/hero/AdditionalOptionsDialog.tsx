@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
@@ -49,10 +48,10 @@ const AdditionalOptionsDialog: React.FC<AdditionalOptionsDialogProps> = ({
           Optional
         </p>
         
-        <div className="mt-6">
+        <div className="mt-6 overflow-y-auto max-h-[45vh] pr-2">
           <div className="space-y-4">
             {additionalOptions.map((option) => (
-              <label key={option.id} className="flex items-center space-x-3 p-3 border rounded-md hover:bg-gray-50">
+              <label key={option.id} className="flex items-center space-x-3 p-3 border rounded-md hover:bg-gray-50 cursor-pointer">
                 <Checkbox
                   id={option.id}
                   checked={selectedOptions.includes(option.id)}

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useToast } from "@/hooks/use-toast";
+import { DateRange } from 'react-day-picker';
 
 export interface HeroState {
   jobDescription: string;
@@ -15,7 +16,7 @@ export interface HeroState {
   selectedBathrooms: number | null;
   selectedCleaningType: string | null;
   selectedAdditionalOptions: string[];
-  selectedDate: Date | undefined;
+  selectedDateRange: DateRange | undefined;
   description: string;
   fullName: string;
   email: string;
@@ -38,7 +39,7 @@ export interface HeroActions {
   handleBathroomSelect: (option: number) => void;
   handleCleaningTypeSelect: (option: string) => void;
   handleAdditionalOptionToggle: (option: string) => void;
-  handleDateSelect: (date: Date | undefined) => void;
+  handleDateRangeSelect: (range: DateRange | undefined) => void;
   handleDescriptionChange: (value: string) => void;
   handleFullNameChange: (value: string) => void;
   handleEmailChange: (value: string) => void;
@@ -69,7 +70,7 @@ export function useHeroState() {
   const [selectedBathrooms, setSelectedBathrooms] = useState<number | null>(null);
   const [selectedCleaningType, setSelectedCleaningType] = useState<string | null>(null);
   const [selectedAdditionalOptions, setSelectedAdditionalOptions] = useState<string[]>([]);
-  const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
+  const [selectedDateRange, setSelectedDateRange] = useState<DateRange | undefined>(undefined);
   const [description, setDescription] = useState('');
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
@@ -100,8 +101,8 @@ export function useHeroState() {
     });
   };
 
-  const handleDateSelect = (date: Date | undefined) => {
-    setSelectedDate(date);
+  const handleDateRangeSelect = (range: DateRange | undefined) => {
+    setSelectedDateRange(range);
   };
 
   const handleDescriptionChange = (value: string) => {
@@ -135,7 +136,7 @@ export function useHeroState() {
       selectedBathrooms,
       selectedCleaningType,
       selectedAdditionalOptions,
-      selectedDate,
+      selectedDateRange,
       description,
       fullName,
       email,
@@ -157,7 +158,7 @@ export function useHeroState() {
       handleBathroomSelect,
       handleCleaningTypeSelect,
       handleAdditionalOptionToggle,
-      handleDateSelect,
+      handleDateRangeSelect,
       handleDescriptionChange,
       handleFullNameChange,
       handleEmailChange,
