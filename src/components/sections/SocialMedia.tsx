@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Facebook, Instagram, ThumbsUp, Map } from 'lucide-react';
 import {
@@ -63,11 +62,11 @@ const SocialMedia = () => {
                   <CardTitle className="text-xl ml-2">{platform.name}</CardTitle>
                 </CardHeader>
                 <CardContent className="p-0">
-                  <div className="w-full h-[220px] relative">
+                  <div className="w-full aspect-[3/2] relative">
                     <img
                       src={platform.image}
                       alt={`${platform.name} profile`}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-contain"
                     />
                   </div>
                 </CardContent>
