@@ -13,25 +13,25 @@ const SocialMedia = () => {
     {
       name: 'Facebook',
       icon: <Facebook className="h-6 w-6 text-blue-600" />,
-      image: '/lovable-uploads/344c7f5b-b70b-4a4f-b26e-2b54ac88e0d5.png',
-      link: 'https://www.facebook.com/421846207675890?ref=embed_page'
+      image: '/images/logo/facebookprofile.png',
+      link: 'https://www.facebook.com/profile.php?id=61564938880058'
     },
     {
       name: 'Instagram',
       icon: <Instagram className="h-6 w-6 text-pink-600" />,
-      image: '/lovable-uploads/9aef24a4-7f61-453f-8b25-591131652ca9.png',
+      image: '/images/logo/instagramprofile.png',
       link: 'https://www.instagram.com/extremesolnclean/'
     },
     {
       name: 'Thumbtack',
       icon: <ThumbsUp className="h-6 w-6 text-blue-800" />,
-      image: '/lovable-uploads/a6fa0c50-2f34-4e4f-b97b-1aafeb7757a6.png',
+      image: '/images/logo/thumbtackreviews.png',
       link: 'https://www.thumbtack.com/il/chicago/house-cleaning/extreme-solutions-cleaning-inc/service/533536174690787333'
     },
     {
       name: 'Google Reviews',
       icon: <Map className="h-6 w-6 text-red-500" />,
-      image: '/lovable-uploads/d534e6e7-0a6f-4468-95d3-569e9f61a399.png',
+      image: '/images/logo/googlereview.png',
       link: 'https://g.co/kgs/38UXJyY'
     }
   ];
@@ -48,7 +48,7 @@ const SocialMedia = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {socialPlatforms.map((platform) => (
             <a
               key={platform.name}
@@ -63,11 +63,13 @@ const SocialMedia = () => {
                   <CardTitle className="text-xl ml-2">{platform.name}</CardTitle>
                 </CardHeader>
                 <CardContent className="p-0">
-                  <img
-                    src={platform.image}
-                    alt={`${platform.name} profile`}
-                    className="w-full h-[300px] object-cover"
-                  />
+                  <div className="w-full h-[220px] relative">
+                    <img
+                      src={platform.image}
+                      alt={`${platform.name} profile`}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
                 </CardContent>
               </Card>
             </a>
@@ -85,4 +87,3 @@ const SocialMedia = () => {
 };
 
 export default SocialMedia;
-
